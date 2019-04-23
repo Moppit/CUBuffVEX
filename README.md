@@ -7,9 +7,11 @@ is categorized by Big/Small bot, and the naming convention goes:
 ```[B/S]Bot-[Field].vex```
 ### Table of Contents
 1. Big Bot
+
 	1.1 BBot-Blue.vex
 	1.2 BBot-Red.vex
 2. Small Bot
+
 	2.1 SBot-Blue.vex
 	2.2 SBot-Red.vex
 	2.3 SBot-Skills.vex
