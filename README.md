@@ -8,13 +8,18 @@ is categorized by Big/Small bot, and the naming convention goes:
 ### Table of Contents
 1. Big Bot
 
-	1.1 BBot-Blue.vex
-	1.2 BBot-Red.vex
+	a. BBot-Blue.vex
+  
+	b. BBot-Red.vex
+  
 2. Small Bot
 
-	2.1 SBot-Blue.vex
-	2.2 SBot-Red.vex
-	2.3 SBot-Skills.vex
+	a. SBot-Blue.vex
+  
+	b. SBot-Red.vex
+  
+	c. SBot-Skills.vex
+  
 ## Code Base
 Some class implementations are consistent between seasons. As we use C++ Pro with VEX Coding Studio, 
 we've saved many of our basic classes and functions as .cpp files. These classes are then incorporated
