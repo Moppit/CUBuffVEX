@@ -4,25 +4,25 @@ CU Buff VEX Robotics Team Software
 ## Competition Code
 All of our autonomous, drive, and robot skills code for each of the robots is stored here. The folder
 is categorized by Big/Small bot, and the naming convention goes:
-```[B/S]Bot-[Field].vex```
+```[B/S]Bot-[Field]```
 ### Table of Contents
 1. Big Bot
 
-	a. BBot-Blue.vex
+	a. BBot-Blue
   
-	b. BBot-Red.vex
+	b. BBot-Red
   
 2. Small Bot
 
-	a. SBot-Blue.vex
+	a. SBot-Blue
   
-	b. SBot-Red.vex
+	b. SBot-Red
   
-	c. SBot-Skills.vex
+	c. SBot-Skills
   
 ## Code Base
-Some class implementations are consistent between seasons. As we use C++ Pro with VEX Coding Studio, 
-we've saved many of our basic classes and functions as .cpp files. These classes are then incorporated
+Some class implementations are consistent between seasons. As we use C++ with VEX Code, 
+we've saved many of our basic classes and functions. These classes are then incorporated
 into our competition code.
 ### Table of Contents
 1. Proportional Integral Derivative (PID) Class
