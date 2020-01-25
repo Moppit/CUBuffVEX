@@ -23,12 +23,35 @@ vex::motor backRight(vex::PORT12, vex::gearSetting::ratio18_1, true);
 vex::motor liftLeft(vex::PORT18, vex::gearSetting::ratio18_1, true);
 vex::motor liftRight(vex::PORT17, vex::gearSetting::ratio18_1, false);
 
+vex::controller Controller;
 
+vex::motor_group lift(liftLeft, liftRight);
 
 int main() {
 
     // Test run -- move a little bit
     double time = 3;
+
+    // CONNECTING CONTROLLER TO ROBOT
+
+    while(true) {
+
+        lift.spin(vex::directionType::fwd, Controller.Axis3.value(), vex::velocityUnits::rpm);
+
+        //liftRight.spin(vex::directionType::fwd, Controller.Axis3.value(), vex::velocityUnits::rpm, false);
+        //liftLeft.spin(vex::directionType::fwd, Controller.Axis3.value(), vex::velocityUnits::rpm);
+      
+    }
+
+    
+    
+
+
+    // END CONNECTING CONTROLLER TO ROBOT
+
+
+
+    // ----------------------------------------------------
     
     // frontLeft.rotateFor(time, vex::timeUnits::sec);
     // midLeft.rotateFor(time, vex::timeUnits::sec);
@@ -37,8 +60,30 @@ int main() {
     // midRight.rotateFor(time, vex::timeUnits::sec);
     // backRight.rotateFor(time, vex::timeUnits::sec);
 
-    liftRight.rotateFor(time, vex::timeUnits::sec);
-    liftLeft.rotateFor(time, vex::timeUnits::sec);
+    // frontLeft.spin(directionType::fwd); //frontLeft fwd goes backwards
+    // frontRight.spin(directionType::fwd); //frontRight fwd goes backwards
+
+
+    // THESE RUN SIMULTANEOUSLY
+    // frontLeft.rotateFor(360, vex::rotationUnits::deg, false);
+    // frontRight.rotateFor(360, vex::rotationUnits::deg);
+
+    // liftRight.rotateFor(time, vex::timeUnits::sec);
+    // liftLeft.rotateFor(time, vex::timeUnits::sec);
+
+    // liftRight.rotateFor(90, vex::rotationUnits::deg, false);
+    // liftLeft.rotateFor(90, vex::rotationUnits::deg);
+
+
+    /* THESE RUN SIMULTANEOUSLY
+    liftRight.rotateTo(30, vex::rotationUnits::deg, false);
+    liftLeft.rotateTo(30, vex::rotationUnits::deg);
+
+    task::sleep(3000);
+
+    liftRight.rotateTo(-30, vex::rotationUnits::deg, false);
+    liftLeft.rotateTo(-30, vex::rotationUnits::deg);
+    // END SIMULTANEOUSLY  */
 
     // int count = 0;
    
