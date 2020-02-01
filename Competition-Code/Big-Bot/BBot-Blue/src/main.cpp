@@ -16,6 +16,16 @@ vex::brain       Brain;
 vex::competition Competition;
 
 // define your global instances of motors and other devices here
+vex::controller Controller;
+motor frontLeft(PORT11, gearSetting::ratio18_1, true);
+motor midLeft(PORT12, gearSetting::ratio18_1, false);
+motor backLeft(PORT13, gearSetting::ratio18_1, true);
+motor frontRight(PORT20, gearSetting::ratio18_1, false);
+motor midRight(PORT19, gearSetting::ratio18_1, true);
+motor backRight(PORT18, gearSetting::ratio18_1, false);
+
+motor_group leftDriveMotors(frontLeft, midLeft, backLeft);
+motor_group rightDriveMotors(frontRight, midRight, backRight);
 
 
 /*---------------------------------------------------------------------------*/
@@ -68,10 +78,11 @@ void usercontrol( void ) {
     // Each time through the loop your program should update motor + servo 
     // values based on feedback from the joysticks.
 
-    // ........................................................................
-    // Insert user code here. This is where you use the joystick values to 
-    // update your motors, etc.
-    // ........................................................................
+    // Set the left wheels to Axis 3 value
+    leftDriveMotors.spin(directionType::fwd, Controller.Axis3.value()/3, vex::velocityUnits::rpm);
+
+    // Set the right wheels to Axis 2 value
+    rightDriveMotors.spin(directionType::fwd, Controller.Axis2.value()/3, vex::velocityUnits::rpm);
  
     vex::task::sleep(20); //Sleep the task for a short amount of time to prevent wasted resources. 
   }
