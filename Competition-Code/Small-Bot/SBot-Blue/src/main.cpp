@@ -23,12 +23,14 @@ motor frontRight(PORT16, gearSetting::ratio18_1, false);
 motor midRight(PORT14, gearSetting::ratio18_1, true);
 motor backRight(PORT12, gearSetting::ratio18_1, false);
 // Lift Motors
-motor liftLeft(PORT18, gearSetting::ratio18_1, true);
-motor liftRight(PORT17, gearSetting::ratio18_1, false);
+motor liftLeftUpper(PORT18, gearSetting::ratio18_1, true);
+motor liftRightUpper(PORT17, gearSetting::ratio18_1, false);
+motor liftLeftLower(PORT20, gearSetting::ratio18_1, true);
+motor liftRightLower(PORT19, gearSetting::ratio18_1, false);
 
 controller Controller;
 
-motor_group lift(liftLeft, liftRight);
+motor_group lift(liftLeftUpper, liftRightUpper, liftLeftLower, liftRightLower);
 motor_group leftDriveMotors(frontLeft, midLeft, backLeft);
 motor_group rightDriveMotors(frontRight, midRight, backRight);
 
@@ -92,9 +94,13 @@ void usercontrol( void ) {
     rightDriveMotors.spin(directionType::fwd, Controller.Axis2.value()/3, velocityUnits::rpm);
 
     // Lift Arms
-    if(Controller.ButtonA.pressing())
+    if(Controller.ButtonR1.pressing())
     {
-      lift.spin(directionType::fwd, 200, velocityUnits::rpm);
+      lift.spin(directionType::fwd, 50, velocityUnits::rpm);
+    }
+    if(Controller.ButtonR2.pressing())
+    {
+      lift.spin(directionType::rev, 50, velocityUnits::rpm);
     }
  
     task::sleep(20); //Sleep the task for a short amount of time to prevent wasted resources. 
