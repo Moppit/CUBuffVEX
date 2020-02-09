@@ -24,8 +24,14 @@ motor frontRight(PORT20, gearSetting::ratio18_1, false);
 motor midRight(PORT19, gearSetting::ratio18_1, true);
 motor backRight(PORT18, gearSetting::ratio18_1, false);
 
+// Storage lift
+motor liftRight(PORT15, gearSetting::ratio18_1, true);
+motor liftLeft(PORT16, gearSetting::ratio18_1, false);
+
 motor_group leftDriveMotors(frontLeft, midLeft, backLeft);
 motor_group rightDriveMotors(frontRight, midRight, backRight);
+motor_group allDriveMotors(frontRight, midRight, backRight,frontLeft, midLeft, backLeft);
+motor_group lift(liftRight, liftLeft);
 
 
 /*---------------------------------------------------------------------------*/
@@ -59,6 +65,12 @@ void autonomous( void ) {
   // Insert autonomous user code here.
   // ..........................................................................
 
+  //drive forward
+  allDriveMotors.setVelocity(5, velocityUnits::rpm);
+  allDriveMotors.rotateFor(0.5, rotationUnits::rev, false);
+  allDriveMotors.setVelocity(20, velocityUnits::rpm);
+  allDriveMotors.rotateFor(-0.75, rotationUnits::rev, false);
+
 }
 
 /*---------------------------------------------------------------------------*/
@@ -84,6 +96,19 @@ void usercontrol( void ) {
     // Set the right wheels to Axis 2 value
     rightDriveMotors.spin(directionType::fwd, Controller.Axis2.value()/3, vex::velocityUnits::rpm);
  
+    // Lift
+    if(Controller.ButtonR1.pressing())
+    {
+      lift.spin(directionType::fwd, 150, vex::velocityUnits::rpm);
+    }
+    else if(Controller.ButtonR2.pressing())
+    {
+      lift.spin(directionType::rev, 150, vex::velocityUnits::rpm);
+    }
+    else if(Controller.ButtonA.pressing())
+    {
+      lift.stop();
+    }
     vex::task::sleep(20); //Sleep the task for a short amount of time to prevent wasted resources. 
   }
 }
