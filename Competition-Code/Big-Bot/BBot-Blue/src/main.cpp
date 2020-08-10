@@ -28,10 +28,15 @@ motor backRight(PORT18, gearSetting::ratio18_1, false);
 motor liftRight(PORT15, gearSetting::ratio18_1, true);
 motor liftLeft(PORT16, gearSetting::ratio18_1, false);
 
+// Intake
+motor intakeRight(PORT10, gearSetting::ratio18_1, true);
+motor intakeLeft(PORT1, gearSetting::ratio18_1, false);
+
 motor_group leftDriveMotors(frontLeft, midLeft, backLeft);
 motor_group rightDriveMotors(frontRight, midRight, backRight);
 motor_group allDriveMotors(frontRight, midRight, backRight,frontLeft, midLeft, backLeft);
 motor_group lift(liftRight, liftLeft);
+motor_group intake(intakeLeft, intakeRight);
 
 
 /*---------------------------------------------------------------------------*/
@@ -97,17 +102,33 @@ void usercontrol( void ) {
     rightDriveMotors.spin(directionType::fwd, Controller.Axis2.value()/3, vex::velocityUnits::rpm);
  
     // Lift
+    int lift_power = 200;
     if(Controller.ButtonR1.pressing())
     {
-      lift.spin(directionType::fwd, 150, vex::velocityUnits::rpm);
+      lift.spin(directionType::fwd, lift_power, vex::velocityUnits::rpm);
     }
     else if(Controller.ButtonR2.pressing())
     {
-      lift.spin(directionType::rev, 150, vex::velocityUnits::rpm);
+      lift.spin(directionType::rev, lift_power, vex::velocityUnits::rpm);
     }
     else if(Controller.ButtonA.pressing())
     {
       lift.stop();
+    }
+
+     // Intake
+    int intake_power = 100;
+    if(Controller.ButtonL1.pressing())
+    {
+      intake.spin(directionType::fwd, intake_power, vex::velocityUnits::rpm);
+    }
+    else if(Controller.ButtonL2.pressing())
+    {
+      intake.spin(directionType::rev, intake_power, vex::velocityUnits::rpm);
+    }
+    else if(Controller.ButtonY.pressing())
+    {
+      intake.stop();
     }
     vex::task::sleep(20); //Sleep the task for a short amount of time to prevent wasted resources. 
   }
